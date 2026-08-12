@@ -1,0 +1,31 @@
+header {
+    background-color: rgb(165, 42, 42);
+    color: blanchedalmond;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 5px solid #971a1a;
+    padding: 15px;
+}
+
+main {
+    background-color: rgb(165, 43, 43);
+    color: rgb(217, 255, 205);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+      border: 5px solid #971a1a;
+    padding: 15px;
+}
+
+footer {
+    background-color: rgb(126, 23, 23);
+    color: rgb(252, 218, 167);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.autor {
+font-weight: bold;
+}
