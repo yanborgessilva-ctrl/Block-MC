@@ -1,29 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Mc</title>
+    <title>AgroTech - Combate ao Desperdício</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+    <!-- Navegação / Header -->
     <header>
-        <h1>Nostalgia Club</h1>
-        <p>Meu primeiro block</p>
+        <div class="logo">🌱 AgroTech Sustentável</div>
+        <nav>
+            <ul>
+                <li><button onclick="navegarPara('inicio')" class="nav-btn active" id="btn-inicio">Início</button></li>
+                <li><button onclick="navegarPara('problema')" class="nav-btn" id="btn-problema">O Problema</button></li>
+                <li><button onclick="navegarPara('simulador')" class="nav-btn" id="btn-simulador">Simulador</button></li>
+                <li><button onclick="navegarPara('plataforma')" class="nav-btn" id="btn-plataforma">Plataforma</button></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <img src="imagem do gimini.png"
-            alt="A imagem é uma ilustração digital em estilo de desenho animado (cartoon) que retrata um quarto aconchegante e nostálgico, focado em videogames clássicos dos anos 90. A iluminação é suave e quente, vinda principalmente da tela da televisão.">
-        <h2>Meu primeiro post</h2>
-        <p>Meu primeiro post sobre as Nostalgias dos jogos</p>
-        <p>Vai falar sobre os jogos que são muitos especiais para as pessoas por conta que marcaram a sua infancia </p>
+
+    <main class="container">
+
+        <!-- PÁGINA 1: INÍCIO -->
+        <section id="inicio" class="pagina ativa">
+            <div class="hero">
+                <h1>Tecnologia e Sustentabilidade no Campo</h1>
+                <p>Conectando pequenos agricultores a mercados locais para reduzir perdas pós-colheita e combater a fome.</p>
+                <div class="hero-btns">
+                    <button class="btn-primary" onclick="navegarPara('simulador')">Testar Simulador</button>
+                    <button class="btn-secondary" onclick="navegarPara('problema')">Ver Dados do Brasil</button>
+                </div>
+            </div>
+
+            <div class="cards-destaque">
+                <div class="card-mini">
+                    <h3>📊 Impacto Mensurável</h3>
+                    <p>Calculamos e reduzimos perdas na agricultura familiar.</p>
+                </div>
+                <div class="card-mini">
+                    <h3>🤝 Conexão Direta</h3>
+                    <p>Sem intermediários entre o pequeno produtor e o mercado local.</p>
+                </div>
+                <div class="card-mini">
+                    <h3>🌎 Sustentável</h3>
+                    <p>Menos resíduos orgânicos e menor emissão de gases estufa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA 2: O PROBLEMA & DADOS -->
+        <section id="problema" class="pagina">
+            <h2>O Desperdício de Alimentos no Brasil</h2>
+            <p>Milhões de toneladas de alimentos frescos são descartadas antes mesmo de chegar à mesa das famílias.</p>
+
+            <div class="dados-grid">
+                <div class="dado-box">
+                    <span class="numero">26 Mi</span>
+                    <p>Toneladas de alimentos descartados/ano no Brasil (Embrapa).</p>
+                </div>
+                <div class="dado-box">
+                    <span class="numero">84%</span>
+                    <p>Do desperdício ocorre no transporte e distribuição (Pacto Contra a Fome).</p>
+                </div>
+                <div class="dado-box">
+                    <span class="numero">50%</span>
+                    <p>Perdas diretas na colheita e estocagem inicial.</p>
+                </div>
+            </div>
+
+            <div class="detalhes-problema">
+                <h3>Consequências Sociais e Ambientais</h3>
+                <ul>
+                    <li><strong>Para o produtor:</strong> Redução significativa de renda da agricultura familiar.</li>
+                    <li><strong>Para a sociedade:</strong> Alimentos mais caros e piora da insegurança alimentar.</li>
+                    <li><strong>Para o planeta:</strong> Desperdício de recursos hídricos e degradação do solo.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PÁGINA 3: SIMULADOR INTERATIVO -->
+        <section id="simulador" class="pagina">
+            <h2>Simulador de Economia de Alimentos</h2>
+            <p>Estime quanto alimento sua lavoura pode salvar mensalmente usando a tecnologia AgroTech.</p>
+
+            <div class="form-box">
+                <div class="input-group">
+                    <label for="producao">Produção Mensal de Hortifrúti (em kg):</label>
+                    <input type="number" id="producao" placeholder="Ex: 1500" value="1000">
+                </div>
+
+                <div class="input-group">
+                    <label for="categoria">Categoria Principal:</label>
+                    <select id="categoria">
+                        <option value="0.35">Hortaliças e Folhosas (Perda média 35%)</option>
+                        <option value="0.25">Frutas (Perda média 25%)</option>
+                        <option value="0.20">Tubérculos e Raízes (Perda média 20%)</option>
+                    </select>
+                </div>
+
+                <button class="btn-primary" onclick="calcularEconomia()">Calcular Economia</button>
+
+                <div id="resultado" class="resultado-card hidden">
+                    <h3>Resultado Estimado:</h3>
+                    <p>Alimentos salvos por mês: <strong id="kgSalvos">0</strong> kg</p>
+                    <p>Estimativa de receita preservada: <strong id="valorSalvo">R$ 0,00</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA 4: PLATAFORMA / OFERTAS -->
+        <section id="plataforma" class="pagina">
+            <h2>Plataforma de Conexão Rápida</h2>
+            <p>Cadastre excedentes de safra para venda rápida a feirantes e restaurantes próximos.</p>
+
+            <form id="formOferta" onsubmit="adicionarOferta(event)">
+                <div class="input-group">
+                    <label for="nomeProdutor">Nome do Produtor / Sítio:</label>
+                    <input type="text" id="nomeProdutor" required placeholder="Ex: Sítio Boa Vista">
+                </div>
+
+                <div class="input-group">
+                    <label for="produto">Produto Disponível:</label>
+                    <input type="text" id="produto" required placeholder="Ex: Tomate Orgânico (200kg)">
+                </div>
+
+                <button type="submit" class="btn-primary">Publicar Oferta</button>
+            </form>
+
+            <div class="lista-ofertas">
+                <h3>Ofertas Ativas na Região</h3>
+                <ul id="listaProdutos">
+                    <li><strong>Sítio São José:</strong> 150kg de Alface Crespa (Pronta entrega)</li>
+                    <li><strong>Chácara Verde:</strong> 80kg de Cenoura Fresca</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
+
     <footer>
-        <p>Por: Yan Borges</p>
+        <p>Projeto AgroTech - Maratona Tech | Sustentabilidade & Agropecuária Digital</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
-
 </html>
